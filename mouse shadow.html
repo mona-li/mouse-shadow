@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Mouse shadow</title>
+  <style>
+      canvas{
+          border: 2px solid;
+          border-color:cornflowerblue;
+      }
+      span{
+          color:coral;
+          
+      }
+  </style>
+</head>
+<body>
+    <canvas id='myCanvas' width='600' height='400'>
+       <p>Your browser doesn't support canvas.</p>
+    </canvas>
+    <br><br>
+    <span>Move a mouse inside the blue border box.</span>
+    <script>
+      $(document).ready(function() {
+        var my_canvas = document.getElementById('myCanvas');
+        var ctx = my_canvas.getContext('2d');
+        $(document).mousemove(function(event){
+          var last_pos_x= event.pageX;
+          var last_pos_y= event.pageY;
+          draw(event);
+          setTimeout(function(){ ctx.clearRect(last_pos_x, last_pos_y, 10, 10);}, 500);
+        });
+
+        function draw(event){
+          pos_x=event.pageX;
+          pos_y=event.pageY;
+          ctx.beginPath();
+          ctx.rect(pos_x, pos_y, 10, 10);
+          ctx.fillStyle='lightpink';
+          ctx.fill();
+          ctx.closePath();
+          };
+      });
+    </script>
+</body>
+</html>
